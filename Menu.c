@@ -113,7 +113,7 @@ void DrawMenu(struct Nodo *Root, int* valuesArray, int argc)
             printf("Value not found. Try again.\n");
         }
 
-        gotoxy(0, 24);
+        gotoxy(0, 25);
         system("pause");
     }
 }
