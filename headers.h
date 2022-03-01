@@ -1,16 +1,17 @@
 #ifndef __THIS__
 #define __THIS__
 
-#include <stdio.h>
-#include <stdlib.h>
-
 struct Nodo {
 	int Value;
 	struct Nodo * left;
 	struct Nodo * righ;
 };
 
+#define ARRAYSIZE 10
+#include <stdio.h>
+#include <stdlib.h>
 #include "TreeBuilder.c"
-//void BlossomNode(struct Nodo* NodoTmp, struct Nodo* PathTmp);
+#include "PrintTree.c"
+#include "Deforest.c"
 
 #endif

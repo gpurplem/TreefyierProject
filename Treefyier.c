@@ -1,43 +1,41 @@
-/* GetNumbers() OK
-**
-** Nodo: 1st store into local variable, then from it, store into struct.
-** this doesn't work: raiz->esq = newNodo(valuesArray[1]);
-** 
-** Root and children only get values.
-*/
+// Interesting issues:
+// > "short int DelNodo" declared before call to DeleteNodo (L27), causes arrayValue to bug. [0] is set to value 0.
+// > "struct_pointer->member = function_that_returns_address_of_new_node". Does't work at all. Must first pass to simple pointer, then pass it to the struct member.
 
 #include "headers.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-	int valuesArray[7];
-	int i;
-	
+	int valuesArray[ARRAYSIZE], DelNodo, i;
+
 	GetNumbers(argc, argv, valuesArray);
 
-	//Initialize tree.
-	struct Nodo* Root = NewNodo(valuesArray[0]);
-	struct Nodo* NodoTmp = NULL;
-	struct Nodo* PathTmp = NULL;
-	
-	//Build tree
-	for(i = 1; i<argc-1; i++)
+	// Initialize tree.
+	struct Nodo *Root = NewNodo(valuesArray[0]);
+	struct Nodo *PathTmp = NULL;
+
+	BuildTree(&argc, Root, valuesArray);
+
+	PrintTree(Root);
+
+	system("pause");
+
+	while(1)
 	{
-		NodoTmp = NewNodo(valuesArray[i]);
-		PathTmp = Root;
+		printf("Type value of node to delete it.\nType -1 to end application.\n");
 
-		BlossomNode(NodoTmp, PathTmp);
+		scanf("%i", &DelNodo);
+		if(DelNodo == -1) break;
+
+		if(DeleteNodo(valuesArray, DelNodo, argc) == 1)
+		{
+			//Rebuild tree from scratch.
+		Root = NewNodo(valuesArray[0]);
+		BuildTree(&argc, Root, valuesArray);
+
+		PrintTree(Root);
+		}
+		else printf("Value not found. Try again.\n");
+		
 	}
-	
-
-	//Testing section.
-	PathTmp = Root;
-	printf("%d ", PathTmp->Value);
-	
-	PathTmp = PathTmp->left;
-	printf("%d ", PathTmp->Value);
-	
-	//Era pra imprimir o 14.
-	PathTmp = PathTmp->righ;
-	printf("%d ", PathTmp->Value);	
 }
