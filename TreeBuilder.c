@@ -7,7 +7,7 @@ void GetNumbers(int argc, char **argv, int *valuesArray)
 
     while (argCounter < argc)
     {
-        valuesArray[argCounter] = atoi(argv[argCounter+1]);
+        valuesArray[argCounter] = atoi(argv[argCounter + 1]);
         argCounter++;
     }
 }
@@ -58,10 +58,10 @@ void BlossomNode(struct Nodo *NodoTmp, struct Nodo *PathTmp)
 // Inserts array values into correct node position.
 // Doesn't create root node! It adds to existing one.
 // argc is decremented in order to correctly delete nodes in DeleteNodo().
-void BuildTree(int* argc, struct Nodo *Root, int* valuesArray)
+void BuildTree(int *argc, struct Nodo *Root, int *valuesArray)
 {
-    struct Nodo* NodoTmp = NULL;
-	struct Nodo* PathTmp = NULL;
+    struct Nodo *NodoTmp = NULL;
+    struct Nodo *PathTmp = NULL;
     int i;
 
     for (i = 1; i < *argc - 1; i++)
@@ -71,6 +71,6 @@ void BuildTree(int* argc, struct Nodo *Root, int* valuesArray)
 
         BlossomNode(NodoTmp, PathTmp);
     }
-    
+
     *argc -= 1;
 }

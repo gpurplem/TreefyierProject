@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-	int valuesArray[ARRAYSIZE], DelNodo, i;
+	int valuesArray[MYARRAYSIZE], DelNodo, i, j, test=0;
 
 	GetNumbers(argc, argv, valuesArray);
 
@@ -16,26 +16,5 @@ int main(int argc, char **argv)
 
 	BuildTree(&argc, Root, valuesArray);
 
-	PrintTree(Root);
-
-	system("pause");
-
-	while(1)
-	{
-		printf("Type value of node to delete it.\nType -1 to end application.\n");
-
-		scanf("%i", &DelNodo);
-		if(DelNodo == -1) break;
-
-		if(DeleteNodo(valuesArray, DelNodo, argc) == 1)
-		{
-			//Rebuild tree from scratch.
-		Root = NewNodo(valuesArray[0]);
-		BuildTree(&argc, Root, valuesArray);
-
-		PrintTree(Root);
-		}
-		else printf("Value not found. Try again.\n");
-		
-	}
+	DrawMenu(Root, valuesArray, argc);
 }

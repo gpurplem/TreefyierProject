@@ -1,38 +1,48 @@
 #include "headers.h"
 
-void PrintChildren(int index, struct Nodo *Nodo)
+void PrintChildrenFrame(int index, struct Nodo *Nodo, int xPos, int *yPos)
 {
     if (Nodo->left != NULL)
+    {
+        gotoxy(xPos, *yPos);
         printf("Nodo %d = %d\n", index, Nodo->left->Value);
+        *yPos = *yPos + 1;
+    }
 
     if (Nodo->righ != NULL)
+    {
+        gotoxy(xPos, *yPos);
         printf("Nodo %d = %d\n", index + 1, Nodo->righ->Value);
+        *yPos = *yPos + 1;
+    }
 }
 
 // Prints up to level 4 (0-4).
-void PrintTree(struct Nodo *ActualRoot)
+void PrintTreeFrame(struct Nodo *ActualRoot, int xPos, int yPos)
 {
     struct Nodo *Nodo = ActualRoot;
     struct Nodo *NodoTmp = Nodo;
 
     // Print root
+    gotoxy(xPos, yPos);
+    yPos++;
     printf("Nodo %d = %d\n", 1, Nodo->Value);
 
     // level 1
-    PrintChildren(2, Nodo);
+    PrintChildrenFrame(2, Nodo, xPos, &yPos);
 
     // level 2
     if (Nodo->left != NULL)
     {
         Nodo = Nodo->left;
-        PrintChildren(4, Nodo);
+        PrintChildrenFrame(4, Nodo, xPos, &yPos);
     }
     Nodo = ActualRoot;
 
     if (Nodo->righ != NULL)
     {
         Nodo = Nodo->righ;
-        PrintChildren(6, Nodo);
+        PrintChildrenFrame(6, Nodo, xPos, &yPos);
     }
     Nodo = ActualRoot;
 
@@ -43,7 +53,7 @@ void PrintTree(struct Nodo *ActualRoot)
         if (Nodo->left != NULL)
         {
             Nodo = Nodo->left;
-            PrintChildren(8, Nodo);
+            PrintChildrenFrame(8, Nodo, xPos, &yPos);
         }
     }
     Nodo = ActualRoot;
@@ -54,7 +64,7 @@ void PrintTree(struct Nodo *ActualRoot)
         if (Nodo->righ != NULL)
         {
             Nodo = Nodo->righ;
-            PrintChildren(10, Nodo);
+            PrintChildrenFrame(10, Nodo, xPos, &yPos);
         }
     }
     Nodo = ActualRoot;
@@ -65,7 +75,7 @@ void PrintTree(struct Nodo *ActualRoot)
         if (Nodo->left != NULL)
         {
             Nodo = Nodo->left;
-            PrintChildren(12, Nodo);
+            PrintChildrenFrame(12, Nodo, xPos, &yPos);
         }
     }
     Nodo = ActualRoot;
@@ -76,7 +86,7 @@ void PrintTree(struct Nodo *ActualRoot)
         if (Nodo->righ != NULL)
         {
             Nodo = Nodo->righ;
-            PrintChildren(14, Nodo);
+            PrintChildrenFrame(14, Nodo, xPos, &yPos);
         }
     }
     Nodo = ActualRoot;
@@ -91,7 +101,7 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->left != NULL)
             {
                 Nodo = Nodo->left;
-                PrintChildren(16, Nodo);
+                PrintChildrenFrame(16, Nodo, xPos, &yPos);
             }
         }
     }
@@ -106,7 +116,7 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->righ != NULL)
             {
                 Nodo = Nodo->righ;
-                PrintChildren(18, Nodo);
+                PrintChildrenFrame(18, Nodo, xPos, &yPos);
             }
         }
     }
@@ -121,7 +131,7 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->left != NULL)
             {
                 Nodo = Nodo->left;
-                PrintChildren(20, Nodo);
+                PrintChildrenFrame(20, Nodo, xPos, &yPos);
             }
         }
     }
@@ -136,7 +146,7 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->righ != NULL)
             {
                 Nodo = Nodo->righ;
-                PrintChildren(22, Nodo);
+                PrintChildrenFrame(22, Nodo, xPos, &yPos);
             }
         }
     }
@@ -151,11 +161,12 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->left != NULL)
             {
                 Nodo = Nodo->left;
-                PrintChildren(24, Nodo);
+                PrintChildrenFrame(24, Nodo, xPos, &yPos);
             }
         }
     }
     Nodo = ActualRoot;
+
     if (Nodo->righ != NULL)
     {
         Nodo = Nodo->righ;
@@ -165,11 +176,12 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->righ != NULL)
             {
                 Nodo = Nodo->righ;
-                PrintChildren(26, Nodo);
+                PrintChildrenFrame(26, Nodo, xPos, &yPos);
             }
         }
     }
     Nodo = ActualRoot;
+
     if (Nodo->righ != NULL)
     {
         Nodo = Nodo->righ;
@@ -179,11 +191,12 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->left != NULL)
             {
                 Nodo = Nodo->left;
-                PrintChildren(28, Nodo);
+                PrintChildrenFrame(28, Nodo, xPos, &yPos);
             }
         }
     }
     Nodo = ActualRoot;
+    
     if (Nodo->righ != NULL)
     {
         Nodo = Nodo->righ;
@@ -193,7 +206,7 @@ void PrintTree(struct Nodo *ActualRoot)
             if (Nodo->righ != NULL)
             {
                 Nodo = Nodo->righ;
-                PrintChildren(30, Nodo);
+                PrintChildrenFrame(30, Nodo, xPos, &yPos);
             }
         }
     }
